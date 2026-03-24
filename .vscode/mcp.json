@@ -1,0 +1,14 @@
+{
+  "servers": {
+    "mcp-data-app": {
+      "type": "stdio",
+      "command": "uv",
+      "args": [
+        "run",
+        "fastmcp",
+				"run",
+        "server.py"
+      ]
+    }
+  }
+}
