@@ -8,9 +8,10 @@ from fastmcp.server.apps import AppConfig, ResourceCSP
 
 VIEW_URI: str = "ui://data-server/view.html"
 
-mcp: FastMCP = FastMCP("Data Server")
 BASE_DIR = Path(__file__).resolve().parent
 CSV_PATH = BASE_DIR / "static" / "data.csv"
+
+mcp: FastMCP = FastMCP("Data Server")
 
 def csv_to_records(path: str) -> list[dict]:
     with open(path, newline="", encoding="utf-8") as f:
@@ -40,12 +41,12 @@ def csv_to_records(path: str) -> list[dict]:
    
 @mcp.tool(app=AppConfig(resource_uri=VIEW_URI))
 def show_chart(
-  title: str = "Chart Title",
+    title: str = "Chart Title",
     chart_type: str = "bar",
 ) -> str:
     """Show data as an interactive chart.
     chart_type: bar, pie, line, doughnut, or area.
-    data: optional mapping like {"Python": 31.0, "Go": 14.3}."""
+    title: The title of the chart. """
 
     chart_type = chart_type.lower().strip()
     if chart_type not in {"bar", "pie", "line", "doughnut", "area"}:
